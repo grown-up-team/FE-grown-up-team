@@ -85,7 +85,7 @@ input:focus {
 .search button {
   margin-left: 0px;
   padding: 0px;
-  background: url(../static/icon/search.png) no-repeat;
+  background: url(../assets/icon/search.png) no-repeat;
   border: none;
   width: 32px;
   height: 32px;
