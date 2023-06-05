@@ -1,144 +1,139 @@
 /* *******************global******************* */
 
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 /* *******************header******************* */
 header {
-    background-color: #950101;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 30px 0;
-    background-image: url(../static/img/movie.jpeg);
-    background-size: cover;
-    background-position: 0px -85px;
-    background-repeat: no-repeat;
+  background-color: #950101;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 0;
+  background-image: url(../static/img/movie.jpeg);
+  background-size: cover;
+  background-position: 0px -85px;
+  background-repeat: no-repeat;
 }
 
 header > a > img {
-    background-image: url(../static/img/logo1.png), 
+  background-image: url(../static/img/logo1.png);
 }
-
 
 /* *******************body******************* */
 
 body {
-    background-color:#000000;
-    
+  background-color: #000000;
 }
 
 /* *******************overlay******************* */
 .datail-overlay {
-    height: 100%;
-    width: 100%;
-    display: none;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: rgba(0, 0, 0, 0.9);
+  height: 100%;
+  width: 100%;
+  display: none;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.9);
 }
-
 
 /* ***************search area**************** */
 
 .search {
-    width: 350px;
-    height: 70px;
+  width: 350px;
+  height: 70px;
 
-    background-color: #F9F5F6;
-    color: #000000;
-    font-size: 20px;
+  background-color: #f9f5f6;
+  color: #000000;
+  font-size: 20px;
 
-    border-radius: 50px;
+  border-radius: 50px;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1);
 
-    opacity: 1;
+  opacity: 1;
 
-    position: fixed;
-    left: 50%;
-    bottom: 0%;
-    transform: translate(-50%, -50%);
+  position: fixed;
+  left: 50%;
+  bottom: 0%;
+  transform: translate(-50%, -50%);
 
-    cursor: pointer;
+  cursor: pointer;
 }
-
 
 .search input {
-    margin-left: 20px;
-    min-width: 250px;
+  margin-left: 20px;
+  min-width: 250px;
 
-    font-size: 20px;
+  font-size: 20px;
 
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    border-bottom: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
 
-    padding: 5px 10px;
-    background: none;
-    color: #000000;
+  padding: 5px 10px;
+  background: none;
+  color: #000000;
 }
-input:focus { outline: none; }
-
+input:focus {
+  outline: none;
+}
 
 .search button {
-    margin-left:0px;
-    padding: 0px;
-    background: url(../static/icon/search.png) no-repeat;
-    border: none;
-    width: 32px;
-    height: 32px;
-    cursor: pointer;
-    
-    position: relative;
-    right: 5px;
-    top: 6px; ;
+  margin-left: 0px;
+  padding: 0px;
+  background: url(../static/icon/search.png) no-repeat;
+  border: none;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+
+  position: relative;
+  right: 5px;
+  top: 6px;
 }
-
-
 
 /* ******************card area****************** */
 
 .cardList {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: center;
 }
 
 .movie-card {
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.12), 0 3px 6px rgba(0, 0, 0, 0.24);
-    margin: 20px;
-    padding: 20px;
-    width: 300px;
-    justify-self: center;
-    background-color: bisque;
-    border-radius: 10px;
-    cursor: pointer;
-    user-select: none;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.12), 0 3px 6px rgba(0, 0, 0, 0.24);
+  margin: 20px;
+  padding: 20px;
+  width: 300px;
+  justify-self: center;
+  background-color: bisque;
+  border-radius: 10px;
+  cursor: pointer;
+  user-select: none;
 }
 
 img {
-    overflow-clip-margin: content-box;
-    overflow: clip;
+  overflow-clip-margin: content-box;
+  overflow: clip;
 }
 
 .movie-card img {
-    width: 100%;
-    border-radius: 10px;
+  width: 100%;
+  border-radius: 10px;
 }
 
 p {
-    display: block;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
 }
