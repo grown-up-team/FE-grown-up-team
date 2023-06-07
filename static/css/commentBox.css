@@ -57,11 +57,6 @@
   margin-bottom: 0.5em;
 }
 
-.eachComment .voteDiv {
-  display: flex;
-  justify-content: flex-end;
-}
-
 .eachComment .deleteComment {
   background-color: #f5d042;
   font-weight: bold;
