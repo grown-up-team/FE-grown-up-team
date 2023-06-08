@@ -52,9 +52,28 @@ document.addEventListener('DOMContentLoaded', function () {
         const movieCards = document.querySelectorAll('.movie-card'); // :CSS 선택자를 이용하여 모든 요소를 선택합니다.
         movieCards.forEach(card => {
           card.addEventListener('click', function () {
-            let movieId = this.getAttribute('data-id'); // : 해당 요소의 속성 값을 가져옵니다.
-            alert(`영화 id: ${movieId}`);
-            goToServePage(movieId);
+            let targetId = this.getAttribute('data-id'); // : 해당 요소의 속성 값을 가져옵니다.
+            // alert(`영화 id: ${movieId}`);
+            // goToServePage(movieId);
+
+            // const targetId = e.target.closest("li").dataset.id;
+
+            let url = new URL(window.location.href);
+            // let url = new URL("https://127.0.0.1:5000/");
+
+            // openModal(targetMovie);
+            // window.location.href = url + "detail" + "#" + targetId;
+
+            let formData = new FormData();
+            formData.append('movieId', targetId);
+
+            fetch('/detail', { method: 'POST', body: formData })
+              .then(res => res.json())
+              .then(data => {
+                console.log(data);
+              });
+
+            window.location.href = url + 'detail/' + targetId;
           });
         });
       })

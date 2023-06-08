@@ -7,22 +7,176 @@
     <title>GrownUpTeam상세페이지</title>
 
     <link rel="stylesheet" href="../static/css/commentBox.css" />
-    <script src="../static/modules/comment.js" type="module"></script>
-    <script src="../static/modules/serve.js" type="module"></script>
+    <link rel="stylesheet" href="../static/css/detail.css" />
+    <!-- <script src="../static/modules/comment.js" type="module"></script> -->
+    <!-- <script src="../static/modules/serve.js" type="module"></script> -->
 
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        show_comments(movieId);
+      });
+
+      const movieId = location.pathname.split('/').slice(2);
+
+      const options = {
+        method: 'GET',
+        headers: {
+          accept: 'application/json',
+          Authorization:
+            'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwMDZhZTNhNzI5OTNhOTI2NGQxNWQzNGEzNTdlYzhlZSIsInN1YiI6IjY0NzRhNDNmNWNkMTZlMDBkYzNlOWRjYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.3TEUDm0P7pa-OyHhIfV60sMS5UGuVcRl613Ht0hF68Q'
+        }
+      };
+      // 해당 데이터 api 가져오기
+      fetch(`https://api.themoviedb.org/3/movie/${movieId}`, options)
+        .then(response => response.json())
+        .then(response => {
+          const title = document.querySelector('.movie-title');
+          const img = document.querySelector('.movie-img');
+          const description = document.querySelector('.movie-description');
+          title.innerText = response.title;
+          img.setAttribute('src', `https://image.tmdb.org/t/p/original/${response.poster_path}`);
+          description.innerText = response.overview;
+        })
+        .catch(err => console.error(err));
+
+      fetch(`https://api.themoviedb.org/3/movie/${movieId}/videos?language=en-US`, options)
+        .then(responsed => responsed.json())
+        .then(responsed => {
+          let example = responsed['results'];
+          const trailer = document.querySelector('.trailer');
+          trailer.innerHTML = '';
+
+          //동영상들 설정
+          example.slice(0, 4).forEach(abc => {
+            let temphtml = `
+            <div class="movie_trailer">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/${abc.key}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>`;
+            trailer.insertAdjacentHTML('beforeend', temphtml);
+          });
+        })
+        .catch(err => console.error(err));
+
+      // 리뷰 저장
+      function save_comment() {
+        const reviewer = document.querySelector('#reviewer').value;
+        const reviewText = document.querySelector('#reviewContent').value;
+        const reviewPWD = document.querySelector('#reviewPWD').value;
+
+        let formData = new FormData();
+        formData.append('movieId', movieId);
+        formData.append('reviewer', reviewer);
+        formData.append('reviewText', reviewText);
+        formData.append('reviewPWD', reviewPWD);
+
+        fetch('/comment/register', { method: 'POST', body: formData })
+          .then(res => res.json())
+          .then(data => {
+            alert(data['msg']);
+          })
+          .catch(err => console.err(err));
+      }
+
+      // 리뷰 리스트
+      function show_comments(movieId) {
+        const newMovieId = movieId[0];
+
+        let formData = new FormData();
+        formData.append('movieId', newMovieId);
+
+        fetch('/comment/list', {
+          method: 'POST',
+          body: formData
+        })
+          .then(res => res.json())
+          .then(data => {
+            const members = data['result'];
+            members.forEach(member => {
+              const uid = member['_id'];
+              const movieId = member['movieId'];
+              const reviewer = member['reviewer'];
+              const reviewText = member['reviewText'];
+              const reviewPWD = member['reviewPWD'];
+
+              const card_html = `
+                                <div data-id="${uid}" style="border: 1px solid blue">
+                                  <p>uid: ${uid}</p>
+                                  <p>movieId: ${movieId}</p>
+                                  <p>reviewer: ${reviewer}</p>
+                                  <p>reviewText: ${reviewText}</p>
+                                  <p>reviewPWD: ${reviewPWD}</p>
+                                  <button type="button" class="remove-comment">삭제</button>
+                                </div>
+                              `;
+
+              document.querySelector('.review-row').innerHTML += card_html;
+            });
+          })
+          .catch(err => console.log(err));
+      }
+
+      // 리뷰 삭제
+      document.addEventListener('click', function (e) {
+        if (e.target && e.target.className == 'remove-comment') {
+          const targetUid = e.target.parentElement.dataset.id;
+          let inputPwd = prompt('비밀번호를 입력해 주세요');
+
+          let formData = new FormData();
+          formData.append('targetUid', targetUid);
+          formData.append('inputPwd', inputPwd);
+
+          fetch('/comment/delete', {
+            method: 'DELETE',
+            body: formData
+          })
+            .then(res => res.json())
+            .then(data => {
+              alert(data['msg']);
+              window.location.reload();
+            });
+        }
+      });
+    </script>
   </head>
   <body>
     <header>
-      <a href="index.html">
-        <img src="./assets/img/logo1.png" alt="banner" />
-      </a>
+      <h1>
+        <a href="/">
+          <img src="../static/img/logo1.png" alt="banner" />
+        </a>
+      </h1>
     </header>
+
     <main>
-      <section class="mains" id="mains"></section>
-      <div class="menu">
-        <h1>동영상</h1>
-      </div>
-      <section class="trailer" id="trailer"></section>
+      <section class="detail-main">
+        <div>
+          <img src="" alt="" class="movie-img" />
+        </div>
+        <div>
+          <h2 class="movie-title"></h2>
+          <p class="movie-description"></p>
+        </div>
+      </section>
+
+      <section class="menu">
+        <h3>동영상</h3>
+        <div class="trailer" id="trailer"></div>
+      </section>
+
+      <section>
+        <form>
+          <label>작성자: <input type="text" id="reviewer" /></label>
+          <label
+            >내용:
+            <textarea name="" id="reviewContent" cols="30" rows="10"></textarea>
+          </label>
+          <label>비밀번호: <input type="password" name="" id="reviewPWD" /></label>
+          <button type="submit" onclick="save_comment()">등록</button>
+        </form>
+        <div class="review-row"></div>
+      </section>
+
+      <!-- <section class="mains" id="mains"></section>
       <div>
         <div id="form-commentInfo">
           <div id="comment-count">댓글 <span id="count">0</span></div>
@@ -31,6 +185,7 @@
           <button id="submit">등록</button>
         </div>
         <div id="comments"></div>
+      </div> -->
     </main>
   </body>
 </html>
