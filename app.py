@@ -49,7 +49,31 @@ def reviews_get():
 
     return jsonify({'result': result})
 
-# modify
+# modify chk
+@app.route("/comment/updateChk", methods=["POST"])
+def modify_chk():
+    targetId = request.form['targetUid']
+    inputPwd = request.form['inputPwd']
+    member = db.grown_up_team.find_one({"_id": ObjectId(targetId)})
+
+    if inputPwd == member['reviewPWD'] : 
+        return jsonify({'msg': '수정가능'})
+    else :
+        return jsonify({'msg': '비밀번호가 틀렸습니다.'})
+    
+# modify chk
+@app.route("/comment/update", methods=["PUT"])
+def modify_info():
+    targetId = request.form['targetUid']
+    reviewText = request.form['reviewText']
+    doc = {
+        'reviewText': reviewText,
+    }
+    print(doc)
+
+    db.grown_up_team.update_one({"_id": ObjectId(targetId)}, {"$set" : doc})
+
+    return jsonify({'msg': '수정완료'})
 
 # delete a member
 @app.route("/comment/delete", methods=["DELETE"])

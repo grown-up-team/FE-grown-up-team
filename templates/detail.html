@@ -103,9 +103,10 @@
                                   <p>uid: ${uid}</p>
                                   <p>movieId: ${movieId}</p>
                                   <p>reviewer: ${reviewer}</p>
-                                  <p>reviewText: ${reviewText}</p>
+                                  <p>reviewText: <span class="review-text">${reviewText}</span></p>
                                   <p>reviewPWD: ${reviewPWD}</p>
                                   <button type="button" class="remove-comment">삭제</button>
+                                  <button type="button" class="modify-comment">수정</button>
                                 </div>
                               `;
 
@@ -115,8 +116,8 @@
           .catch(err => console.log(err));
       }
 
-      // 리뷰 삭제
       document.addEventListener('click', function (e) {
+        // 리뷰 삭제
         if (e.target && e.target.className == 'remove-comment') {
           const targetUid = e.target.parentElement.dataset.id;
           let inputPwd = prompt('비밀번호를 입력해 주세요');
@@ -133,6 +134,57 @@
             .then(data => {
               alert(data['msg']);
               window.location.reload();
+            });
+        }
+        // 리뷰 수정: 비번체크
+        if (e.target && e.target.className == 'modify-comment') {
+          const targetUid = e.target.parentElement.dataset.id;
+          let inputPwd = prompt('비밀번호를 입력해 주세요');
+
+          let formData = new FormData();
+          formData.append('targetUid', targetUid);
+          formData.append('inputPwd', inputPwd);
+
+          fetch('/comment/updateChk', {
+            method: 'POST',
+            body: formData
+          })
+            .then(res => res.json())
+            .then(data => {
+              if (data['msg'] === '수정가능') {
+                const reviewTextTag = e.target.parentElement.querySelector('.review-text');
+                const originalReview = reviewTextTag.innerText;
+                const inputTextTag = document.createElement('input');
+                inputTextTag.setAttribute('type', 'text');
+                inputTextTag.classList.add('review-text');
+                inputTextTag.value = originalReview;
+                inputTextTag.innerHTML = reviewTextTag.innerHTML;
+                reviewTextTag.parentNode.replaceChild(inputTextTag, reviewTextTag);
+                const completeModifyBtn = document.createElement('button');
+                completeModifyBtn.innerText = '수정완료';
+                completeModifyBtn.setAttribute('type', 'submit');
+                e.target.parentElement.append(completeModifyBtn);
+                e.target.style.display = 'none';
+
+                document.addEventListener('click', function (e) {
+                  // console.log(inputTextTag.value);
+                  // 리뷰 수정: 수정내용 저장
+                  if (e.target && e.target == completeModifyBtn) {
+                    formData.append('reviewText', inputTextTag.value);
+                    fetch('/comment/update', {
+                      method: 'PUT',
+                      body: formData
+                    })
+                      .then(res => res.json())
+                      .then(data => {
+                        alert(data['msg']);
+                        window.location.reload();
+                      });
+                  }
+                });
+              } else {
+                alert(data['msg']);
+              }
             });
         }
       });
