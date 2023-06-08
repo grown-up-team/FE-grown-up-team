@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
           let _id = a['id'];
 
           let temp_html = `
-                        <div class="movie-card" data-id="${_id}">
+                            <div class="movie-card" data-id="${_id}" onclick="goToServePage('${_id}')">
                             <img src="https://image.tmdb.org/t/p/w500${_poster_path}">
                             <h3 class ="info-title">${_title}</h3>
                             <p class ="info-overview">${_overview}</p>
@@ -41,12 +41,20 @@ document.addEventListener('DOMContentLoaded', function () {
           cardList.insertAdjacentHTML('beforeend', temp_html);
         });
 
+        function goToServePage(urlID) {
+          // http://127.0.0.1:5501/templates/detail.html
+          const serveurl = `detail.html?movieID=${urlID}`;
+          location.href = serveurl;
+          console.log(serveurl);
+        }
+
         // 클릭 이벤트 핸들러 추가 -> alert id
         const movieCards = document.querySelectorAll('.movie-card'); // :CSS 선택자를 이용하여 모든 요소를 선택합니다.
         movieCards.forEach(card => {
           card.addEventListener('click', function () {
             let movieId = this.getAttribute('data-id'); // : 해당 요소의 속성 값을 가져옵니다.
             alert(`영화 id: ${movieId}`);
+            goToServePage(movieId);
           });
         });
       })
