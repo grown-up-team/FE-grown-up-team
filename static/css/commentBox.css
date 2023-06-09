@@ -1,67 +1,89 @@
-#form-commentInfo {
-  width: 100%;
+button:hover {
+  cursor: pointer;
+}
+.comment-wrapper {
+  padding: 30px 1rem;
+  background: #1c1e26;
+  color: #fff;
+  border-radius: 5px;
+}
+.comment-wrapper h3 {
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  font-weight: 400;
+  font-family: 'Noto Sans KR', sans-serif;
+  color: #fff;
+}
+.comment-wrapper input {
+  padding: 8px;
+  color: #fff;
+  background-color: #000;
+  border: 1px solid #116c4e;
+  border-radius: 4px;
+}
+.comment-wrapper input:focus {
+  outline: none;
 }
 
-#comment-count {
-  margin-bottom: 10px;
+.comment-write01,
+.comment-write02 {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 0.5rem;
 }
 
-#nick-input {
-  width: 10%;
-  height: 3.3em;
+.comment-write01 {
+  gap: 8px;
+}
+#reviewContent {
+  width: 60%;
 }
 
-#comment-input {
-  width: 50%;
-  height: 3.3em;
+.review-row {
+  margin: 2rem 0;
 }
-
-#submit {
-  background-color: #f1f6f9;
-  width: 5.5em;
-  height: 3.3em;
-  font-size: 15px;
-  font-weight: bold;
-  color: #394867;
-}
-
-#comments {
-  margin-top: 10px;
-}
-
-.eachComment {
-  width: 50%;
-  margin: 10px;
-  padding: 0.5em;
-  border-bottom: 1px solid #c1bcba;
-}
-
-.eachComment .name {
-  font-size: 1.5em;
-  font-weight: bold;
-  margin-bottom: 0.3em;
+.comment-box {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #000;
+  border-bottom: 1px solid #116c4e;
 }
-
-.eachComment .inputValue {
-  font-size: 1.2em;
-  font-style: italic;
+/* 버튼 */
+.comment-write02 button[type='submit'],
+.modify-complete {
+  border: 0;
+  background-color: #19b783;
+  color: #fff;
+  height: 33px;
+  width: 50px;
+  border-radius: 4px;
 }
-
-.eachComment .time {
-  font-size: 0.7em;
-  color: #c1bcba;
-  font-style: oblique;
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
+.remove-comment {
+  margin-right: 5px;
+  border: 0;
+  background-color: #bf4545;
+  color: #fff;
+  height: 33px;
+  width: 50px;
+  border-radius: 4px;
 }
-
-.eachComment .deleteComment {
-  background-color: #f5d042;
-  font-weight: bold;
-  color: #0a174e;
-  border: none;
-  padding: 5px 10px;
-  cursor: pointer;
+.modify-comment {
+  border: 0;
+  background-color: #dbbb42;
+  color: #fff;
+  height: 33px;
+  width: 50px;
+  border-radius: 4px;
+}
+.complete-comment {
+  border: 0;
+  background-color: #19b783;
+  color: #fff;
+  height: 33px;
+  width: 50px;
+  border-radius: 4px;
 }
