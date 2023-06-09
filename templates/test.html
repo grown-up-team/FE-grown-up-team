@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GrownUpTeam상세페이지</title>
+
+    <link rel="stylesheet" href="../static/css/commentBox.css" />
+    <script src="../static/modules/test.js" type="module"></script>
+    <script src="../static/modules/serve.js" type="module"></script>
+  </head>
+  <body>
+    <header>
+      <a href="index.html">
+        <img src="./assets/img/logo1.png" alt="banner" />
+      </a>
+    </header>
+    <main>
+      <section class="mains" id="mains"></section>
+      <div class="menu">
+        <h1>동영상</h1>
+      </div>
+      <section class="trailer" id="trailer"></section>
+      <div>
+        <!-- <form id="myForm" action="" method="post"> -->
+        <div id="form-commentInfo">
+          <div id="comment-count">댓글 <span id="count">0</span></div>
+          <input id="nick-input" placeholder="닉네임" />
+          <input id="comment-input" placeholder="댓글을 입력해 주세요." />
+          <!-- <input type="password" id="password-input" placeholder="비밀번호" /> -->
+          <button id="submit">등록</button>
+        </div>
+        <!-- </form> -->
+        <div id="comments"></div>
+      </div>
+    </main>
+  </body>
+</html>

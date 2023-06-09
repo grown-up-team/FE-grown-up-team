@@ -50,7 +50,9 @@
           example.slice(0, 4).forEach(abc => {
             let temphtml = `
             <div class="movie_trailer">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/${abc.key}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/${abc.key}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen
+            style="border-radius:12px"></iframe>
+            <div class="movie_name">${abc.name}</div>
             </div>`;
             trailer.insertAdjacentHTML('beforeend', temphtml);
           });
@@ -211,7 +213,9 @@
       </section>
 
       <section class="menu">
-        <h3>동영상</h3>
+        <div class="movie_contents">
+          <img src="../static/icon/youtube.png" class="youtube" />동영상
+        </div>
         <div class="trailer" id="trailer"></div>
       </section>
 
