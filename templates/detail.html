@@ -130,14 +130,12 @@
               const reviewPWD = member['reviewPWD'];
 
               const card_html = `
-                                <div data-id="${uid}" style="border: 1px solid blue">
-                                  <p>uid: ${uid}</p>
-                                  <p>movieId: ${movieId}</p>
-                                  <p>reviewer: ${reviewer}</p>
-                                  <p>reviewText: <span class="review-text">${reviewText}</span></p>
-                                  <p>reviewPWD: ${reviewPWD}</p>
-                                  <button type="button" class="remove-comment">삭제</button>
-                                  <button type="button" class="modify-comment">수정</button>
+                                <div data-id="${uid}" class="comment-box">
+                                  <p>${reviewer}(${reviewPWD}): <span class="review-text">${reviewText}</span></p>
+                                  <div>
+                                    <button type="button" class="remove-comment">삭제</button>
+                                    <button type="button" class="modify-comment">수정</button>
+                                  </div>
                                 </div>
                               `;
 
@@ -150,7 +148,7 @@
       document.addEventListener('click', function (e) {
         // 리뷰 삭제
         if (e.target && e.target.className == 'remove-comment') {
-          const targetUid = e.target.parentElement.dataset.id;
+          const targetUid = e.target.parentElement.parentElement.dataset.id;
           let inputPwd = prompt('비밀번호를 입력해 주세요');
 
           let formData = new FormData();
@@ -169,7 +167,7 @@
         }
         // 리뷰 수정: 비번체크
         if (e.target && e.target.className == 'modify-comment') {
-          const targetUid = e.target.parentElement.dataset.id;
+          const targetUid = e.target.parentElement.parentElement.dataset.id;
           let inputPwd = prompt('비밀번호를 입력해 주세요');
 
           let formData = new FormData();
@@ -183,7 +181,8 @@
             .then(res => res.json())
             .then(data => {
               if (data['msg'] === '수정가능') {
-                const reviewTextTag = e.target.parentElement.querySelector('.review-text');
+                const reviewTextTag =
+                  e.target.parentElement.parentElement.querySelector('.review-text');
                 const originalReview = reviewTextTag.innerText;
                 const inputTextTag = document.createElement('input');
                 inputTextTag.setAttribute('type', 'text');
@@ -192,8 +191,9 @@
                 inputTextTag.innerHTML = reviewTextTag.innerHTML;
                 reviewTextTag.parentNode.replaceChild(inputTextTag, reviewTextTag);
                 const completeModifyBtn = document.createElement('button');
-                completeModifyBtn.innerText = '수정완료';
+                completeModifyBtn.innerText = '저장';
                 completeModifyBtn.setAttribute('type', 'submit');
+                completeModifyBtn.classList.add('modify-complete');
                 e.target.parentElement.append(completeModifyBtn);
                 e.target.style.display = 'none';
 
@@ -248,14 +248,23 @@
       </section>
 
       <section class="comment-wrapper">
+        <h3>Comments</h3>
         <form>
-          <label>작성자: <input type="text" id="reviewer" /></label>
-          <label
-            >내용:
-            <textarea name="" id="reviewContent" cols="30" rows="10"></textarea>
-          </label>
-          <label>비밀번호: <input type="password" name="" id="reviewPWD" /></label>
-          <button type="submit" onclick="save_comment()">등록</button>
+          <div class="comment-write01">
+            <div>
+              <label for="reviewer">작성자: </label>
+              <input type="text" id="reviewer" />
+            </div>
+            <div>
+              <label for="reviewPWD">비밀번호: </label>
+              <input type="password" name="" id="reviewPWD" />
+            </div>
+          </div>
+          <div class="comment-write02">
+            <label for="reviewContent">코멘트: </label>
+            <input type="text" id="reviewContent" />
+            <button type="submit" onclick="save_comment()">등록</button>
+          </div>
         </form>
         <div class="review-row"></div>
       </section>
