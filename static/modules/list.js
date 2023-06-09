@@ -33,9 +33,8 @@ document.addEventListener('DOMContentLoaded', function () {
           let temp_html = `
                             <div class="movie-card" data-id="${_id}" onclick="goToServePage('${_id}')">
                             <img src="https://image.tmdb.org/t/p/w500${_poster_path}">
-                            <h3 class ="info-title">${_title}</h3>
-                            <p class ="info-overview">${_overview}</p>
-                            <p class ="info-vote_average">Rating: ${_vote_average}</p>
+                            <h3 class="info-title">${_title}</h3>
+                            <p class="info-vote_average">Rating: ${_vote_average}</p>
                         </div>
                     `;
           cardList.insertAdjacentHTML('beforeend', temp_html);
