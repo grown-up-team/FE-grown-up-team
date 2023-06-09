@@ -1,3 +1,11 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+}
+
 header {
   background-color: #950101;
   display: flex;
@@ -9,8 +17,8 @@ header {
   background-position: 0px -85px;
   background-repeat: no-repeat;
 }
-
-#form-commentInfo {
+/* 
+.form-commentInfo {
   width: 100%;
 }
 
@@ -18,12 +26,12 @@ header {
   margin-bottom: 10px;
 }
 
-#nick-input {
+#reviewer {
   width: 10%;
   height: 3.3em;
 }
 
-#comment-input {
+#reviewContent {
   width: 50%;
   height: 3.3em;
 }
@@ -41,7 +49,7 @@ header {
   margin-top: 10px;
 }
 
-.eachComment {
+.user-comment {
   width: 50%;
   margin: 10px;
   padding: 0.5em;
@@ -76,4 +84,85 @@ header {
   border: none;
   padding: 5px 10px;
   cursor: pointer;
+}  */
+
+/* commentBox.css */
+
+/* Comment Box Styles */
+
+.form-commentInfo {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input-box {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.input-box input[type='text'],
+.input-box input[type='password'] {
+  padding: 8px 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 200px;
+  margin-bottom: 5px;
+}
+
+.input-box button[type='submit'] {
+  padding: 8px 20px;
+  border: none;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.review-row {
+  width: 80%;
+  border: 2px solid #333;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.user-box {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.user-nick {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.review-text {
+  color: #333;
+}
+
+.remove-comment,
+.modify-comment {
+  padding: 5px 10px;
+  background-color: transparent;
+  border: none;
+  color: #3897f0;
+  cursor: pointer;
+}
+
+.remove-comment:hover,
+.modify-comment:hover {
+  text-decoration: underline;
+}
+
+br {
 }

@@ -99,14 +99,12 @@
               const reviewPWD = member['reviewPWD'];
 
               const card_html = `
-                                <div data-id="${uid}" style="border: 1px solid blue">
-                                  <p>uid: ${uid}</p>
-                                  <p>movieId: ${movieId}</p>
-                                  <p>reviewer: ${reviewer}</p>
-                                  <p>reviewText: <span class="review-text">${reviewText}</span></p>
-                                  <p>reviewPWD: ${reviewPWD}</p>
+                                <div class="user-box" data-id="${uid}"  style="border: 1px solid transparent">
+                                  <p class="user-nick">${reviewer}</p>
+                                  <p> <span class="review-text">${reviewText}</span></p>
                                   <button type="button" class="remove-comment">삭제</button>
                                   <button type="button" class="modify-comment">수정</button>
+                                  <br>
                                 </div>
                               `;
 
@@ -215,17 +213,21 @@
         <div class="trailer" id="trailer"></div>
       </section>
 
-      <section>
-        <form>
-          <label>작성자: <input type="text" id="reviewer" /></label>
-          <label
-            >내용:
-            <textarea name="" id="reviewContent" cols="30" rows="10"></textarea>
-          </label>
-          <label>비밀번호: <input type="password" name="" id="reviewPWD" /></label>
+      <section class="form-commentInfo">
+        <form class="input-box" >
+          <input type="text" id="reviewer" placeholder="작성자" />
+          <input type="text" id="reviewContent" placeholder="내용을 입력해주세요"/>
+          <input type="password" name="" id="reviewPWD" placeholder="비밀번호"/></label>
           <button type="submit" onclick="save_comment()">등록</button>
         </form>
+
         <div class="review-row"></div>
+        <div class="user-box" data-id="${uid}" style="border: 1px solid transparent">
+          <p class="user-nick">유지완</p>
+          <p> <span class="review-text">최애 영화!</span></p>
+          <button type="button" class="remove-comment">삭제</button>
+          <button type="button" class="modify-comment">수정</button>
+        </div>
       </section>
 
       <!-- <section class="mains" id="mains"></section>

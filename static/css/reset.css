@@ -1,0 +1,34 @@
+* {
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+  font-style: normal;
+  font-weight: 200;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+input,
+textarea,
+select,
+button {
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+  font-size: 16px;
+  outline: 0;
+  vertical-align: middle;
+}
+
+img {
+  border: 0;
+  vertical-align: middle;
+}
+
+/* body {
+  min-height: 800px;
+  background-image: linear-gradient(#1D1D1D, #2F2F2F);
+  background-size: auto 100%;
+  background-position: 50% 100%;
+} */
