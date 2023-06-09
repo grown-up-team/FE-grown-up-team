@@ -8,10 +8,15 @@ h3,
 p {
   margin: 0;
 }
-.header {
-  background-color: rgb(34, 34, 25);
-  height: 120px;
-  position: relative;
+
+p {
+  margin-top: 15px;
+}
+img {
+  width: 60%;
+  vertical-align: middle;
+  box-sizing: content-box;
+  padding: 0 25%;
 }
 
 .bannerText a {
@@ -47,8 +52,15 @@ main {
 .detail-main {
   display: grid;
   grid-template-columns: 1fr 2fr;
-  gap: 30px;
+  gap: 20px;
   padding: 90px 0;
+  font-size: large;
+  border: solid #19b783 5px;
+  border-radius: 10px;
+  box-sizing: content-box;
+  margin: 20px 0;
+  color: #19b783;
+  background-color: #1b1e26;
 }
 
 .trailer {
