@@ -7,15 +7,33 @@
 }
 /* *******************header******************* */
 header {
-  background-color: #950101;
+  position: relative;
+  height: 200px;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 30px 0;
-  background-image: url(../img/movie.jpeg);
-  background-size: cover;
-  background-position: 0px -85px;
-  background-repeat: no-repeat;
+  background: center / cover
+    url('https://images.unsplash.com/photo-1440404653325-ab127d49abc1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80')
+    no-repeat;
+}
+header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.85;
+  background-color: #000;
+}
+header a {
+  text-decoration: none;
+}
+header h1 {
+  position: relative;
+  font-size: 4rem;
+  font-family: 'Oswald', sans-serif;
+  color: #fff;
 }
 
 /* *******************body******************* */
@@ -51,7 +69,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 20px 1px #2dffba82;
 
   opacity: 1;
 
@@ -99,37 +117,42 @@ input:focus {
 /* ******************card area****************** */
 
 .cardList {
+  max-width: 1300px;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   justify-content: center;
+  grid-gap: 3rem 1rem;
+  margin: 0 auto;
+  padding: 90px 0 200px;
 }
 
 .movie-card {
+  position: relative;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.12), 0 3px 6px rgba(0, 0, 0, 0.24);
-  margin: 20px;
-  padding: 20px;
+  padding: 1rem 1rem 2.5rem;
   width: 300px;
   justify-self: center;
-  background-color: bisque;
+  background-color: #1b1e26;
   border-radius: 10px;
   cursor: pointer;
   user-select: none;
-}
-
-img {
-  overflow-clip-margin: content-box;
-  overflow: clip;
 }
 
 .movie-card img {
   width: 100%;
   border-radius: 10px;
 }
-
-p {
-  display: block;
-  margin-block-start: 1em;
-  margin-block-end: 1em;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
+.movie-card .info-title {
+  margin-top: 0.5rem;
+  color: #19b783;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.movie-card .info-vote_average {
+  position: absolute;
+  bottom: 0.7rem;
+  right: 1rem;
+  color: #ffffff8f;
+  font-size: 0.9rem;
 }
