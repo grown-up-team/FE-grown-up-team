@@ -5,7 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>GrownUpTeam상세페이지</title>
-
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="../static/css/commentBox.css" />
     <link rel="stylesheet" href="../static/css/detail.css" />
     <!-- <script src="../static/modules/comment.js" type="module"></script> -->
@@ -217,12 +222,11 @@
     </script>
   </head>
   <body>
-    <section class="header">
+    <header>
       <div class="bannerText">
-        <a href="/">More Information</a>
+        <a href="/">MOVIE INFORMATION</a>
       </div>
-      <div class="bannerImg"></div>
-    </section>
+    </header>
 
     <main>
       <section class="detail-main">
@@ -237,12 +241,13 @@
 
       <section class="menu">
         <div class="movie_contents">
-          <img src="../static/icon/youtube.png" class="youtube" />동영상
+          <img src="../static/icon/youtube.png" class="youtube" />
+          <span>Trailer</span>
         </div>
         <div class="trailer" id="trailer"></div>
       </section>
 
-      <section>
+      <section class="comment-wrapper">
         <form>
           <label>작성자: <input type="text" id="reviewer" /></label>
           <label

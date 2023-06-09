@@ -1,91 +1,99 @@
 body {
   margin: 0;
   padding: 0;
+  background: #000;
 }
 h1,
 h2,
 h3,
 p {
   margin: 0;
+  font-family: 'Noto Sans KR', sans-serif;
 }
 
 p {
   margin-top: 15px;
 }
 img {
-  width: 60%;
+  width: 100%;
   vertical-align: middle;
   box-sizing: content-box;
-  padding: 0 25%;
+}
+section {
+  margin-top: 90px;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 130px;
+  padding-left: 3rem;
+  background-color: #000;
+  box-shadow: 1px 1px 20px 0px #ffffff30;
 }
 
 .bannerText a {
-  position: absolute;
-  top: 30px;
-  left: 30px;
   text-decoration: none;
-  font-size: 38px;
+  font-size: 35px;
   font-weight: 500;
   color: #fff;
-  text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px rgb(203, 194, 94),
-    0 0 82px rgb(226, 225, 146), 0 0 92px rgb(169, 161, 100), 0 0 102px rgb(180, 191, 164),
-    0 0 151px rgb(228, 211, 151);
+  text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px rgb(25 183 131),
+    0 0 82px rgb(60 193 149), 0 0 92px rgb(51 149 117), 0 0 20px rgb(54 176 136),
+    0 0 15px rgb(85 218 174);
   animation: pulsate 2.5s infinite alternate;
-}
-
-.bannerImg {
-  position: fixed;
-  right: 0;
-  top: 0;
-  width: 30%;
-  height: 120px;
-  background-image: url('https://pin.it/7yCyuTx');
-  color: white;
-  background-repeat: no-repeat;
-  background-size: cover;
 }
 
 main {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 90px 0;
 }
 .detail-main {
   display: grid;
   grid-template-columns: 1fr 2fr;
   gap: 20px;
-  padding: 90px 0;
+  padding: 90px 60px;
   font-size: large;
-  border: solid #19b783 5px;
+  border: solid #19b783 1px;
   border-radius: 10px;
   box-sizing: content-box;
   margin: 20px 0;
   color: #19b783;
   background-color: #1b1e26;
 }
-
+.detail-main p {
+  color: #dcdcdc;
+}
 .trailer {
   display: flex;
   gap: 20px;
   overflow: auto;
+  padding: 1rem 20px;
+  background: #1b1e26;
+  border-radius: 5px;
 }
 /* 동영상 CSS */
-.movie_contents {
+
+.movie_contents span {
   font-size: 2rem;
   font-weight: 400;
-  color: #1b1e26;
+  font-family: 'Noto Sans KR', sans-serif;
+  color: #fff;
 }
 .movie_name {
   margin: 12px 0 10px 0;
-  text-align: center;
-  font-size: 18px;
-  font-weight: 800;
-  color: #1b1e26;
+  font-size: 16px;
+  font-weight: 400;
+  color: #fff;
 }
 .youtube {
   width: 3%;
   height: 1%;
   margin: 7px 8px 16px 0px;
 }
-.trailer {
-  margin: 0 20px;
+
+.comment-wrapper {
+  background-color: #fff;
 }
