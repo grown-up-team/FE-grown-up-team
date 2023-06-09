@@ -18,7 +18,7 @@ def home():
 def detail(id):
     return render_template('detail.html')
 
-# register member
+# register comment
 @app.route("/comment/register", methods=["POST"])
 def member_post():
     movieId = request.form['movieId']
@@ -36,16 +36,16 @@ def member_post():
 
     return jsonify({'msg': '저장 완료!'})
 
-# show all members
+# show comments
 @app.route("/comment/list", methods=["POST"])
 def reviews_get():
     movieId = request.form['movieId']
-    all_members = list(db.grown_up_team.find({ "movieId": movieId }))
+    all_comments = list(db.grown_up_team.find({ "movieId": movieId }))
 
     result = []
-    for member in all_members:
-        member['_id'] = str(ObjectId(member['_id']))
-        result.append(member)
+    for comment in all_comments:
+        comment['_id'] = str(ObjectId(comment['_id']))
+        result.append(comment)
 
     return jsonify({'result': result})
 
@@ -54,14 +54,14 @@ def reviews_get():
 def modify_chk():
     targetId = request.form['targetUid']
     inputPwd = request.form['inputPwd']
-    member = db.grown_up_team.find_one({"_id": ObjectId(targetId)})
+    comment = db.grown_up_team.find_one({"_id": ObjectId(targetId)})
 
-    if inputPwd == member['reviewPWD'] : 
+    if inputPwd == comment['reviewPWD'] : 
         return jsonify({'msg': '수정가능'})
     else :
         return jsonify({'msg': '비밀번호가 틀렸습니다.'})
     
-# modify chk
+# modify comment
 @app.route("/comment/update", methods=["PUT"])
 def modify_info():
     targetId = request.form['targetUid']
@@ -69,20 +69,19 @@ def modify_info():
     doc = {
         'reviewText': reviewText,
     }
-    print(doc)
 
     db.grown_up_team.update_one({"_id": ObjectId(targetId)}, {"$set" : doc})
 
     return jsonify({'msg': '수정완료'})
 
-# delete a member
+# delete a comment
 @app.route("/comment/delete", methods=["DELETE"])
-def one_member_delete():
+def one_comment_delete():
     targetId = request.form['targetUid']
     inputPwd = request.form['inputPwd']
-    member = db.grown_up_team.find_one({"_id": ObjectId(targetId)})
+    comment = db.grown_up_team.find_one({"_id": ObjectId(targetId)})
 
-    if inputPwd == member['reviewPWD'] : 
+    if inputPwd == comment['reviewPWD'] : 
         db.grown_up_team.delete_one({'_id': ObjectId(targetId)})
         return jsonify({'msg': '삭제 되었습니다.'})
     else :
