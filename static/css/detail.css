@@ -28,3 +28,24 @@ main {
   gap: 20px;
   overflow: auto;
 }
+/* 동영상 CSS */
+.movie_contents {
+  font-size: 2rem;
+  font-weight: 400;
+  color: #1b1e26;
+}
+.movie_name {
+  margin: 12px 0 10px 0;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 800;
+  color: #1b1e26;
+}
+.youtube {
+  width: 3%;
+  height: 1%;
+  margin: 7px 8px 16px 0px;
+}
+.trailer {
+  margin: 0 20px;
+}
