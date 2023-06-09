@@ -65,6 +65,30 @@
         const reviewText = document.querySelector('#reviewContent').value;
         const reviewPWD = document.querySelector('#reviewPWD').value;
 
+        // 유효성 검사
+
+        let number = reviewPWD.search(/[0-9]/g);
+        let english = reviewPWD.search(/[a-z]/gi);
+        let mix = reviewPWD.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
+
+        if (!reviewer) {
+          alert('아이디를 입력 하세요');
+          document.querySelector('#reviewer').focus();
+          return;
+        } else if (!reviewText) {
+          alert('리뷰를 작성해 주세요');
+          document.querySelector('#reviewContent').focus();
+          return;
+        } else if (reviewPWD.length < 8 || reviewPWD.length > 20) {
+          alert('비밀번호는 8자리 ~ 20자리 이내로 입력해 주세요');
+          document.querySelector('#reviewPWD').focus();
+          return;
+        } else if (number < 0 || english < 0 || mix < 0) {
+          alert('영문,숫자,특수문자를 혼합하여 입력해주세요.');
+          passwordInput.focus();
+          return;
+        }
+
         let formData = new FormData();
         formData.append('movieId', movieId);
         formData.append('reviewer', reviewer);
@@ -193,13 +217,12 @@
     </script>
   </head>
   <body>
-    <header>
-      <h1>
-        <a href="/">
-          <img src="../static/img/logo1.png" alt="banner" />
-        </a>
-      </h1>
-    </header>
+    <section class="header">
+      <div class="bannerText">
+        <a href="/">More Information</a>
+      </div>
+      <div class="bannerImg"></div>
+    </section>
 
     <main>
       <section class="detail-main">
