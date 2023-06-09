@@ -8,10 +8,38 @@ h3,
 p {
   margin: 0;
 }
-img {
-  width: 100%;
-  vertical-align: middle;
+.header {
+  background-color: rgb(34, 34, 25);
+  height: 120px;
+  position: relative;
 }
+
+.bannerText a {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  text-decoration: none;
+  font-size: 38px;
+  font-weight: 500;
+  color: #fff;
+  text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px rgb(203, 194, 94),
+    0 0 82px rgb(226, 225, 146), 0 0 92px rgb(169, 161, 100), 0 0 102px rgb(180, 191, 164),
+    0 0 151px rgb(228, 211, 151);
+  animation: pulsate 2.5s infinite alternate;
+}
+
+.bannerImg {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 30%;
+  height: 120px;
+  background-image: url('https://pin.it/7yCyuTx');
+  color: white;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 main {
   max-width: 1200px;
   margin: 0 auto;
